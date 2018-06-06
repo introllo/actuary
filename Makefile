@@ -1,7 +1,10 @@
-export IMAGE := oliviabarnett/actuary:actuary_image
+export IMAGE := introllo/actuary:actuary_image
 export TLS_KEY := ./domain.key
 export TLS_CERT :=  ./domain.crt
 export TOKEN_PASSWORD := ./token_password.txt
+
+export HTTP_PROXY := http://proxy-chain.intel.com:911
+export HTTPS_PROXY := http://proxy-chain.intel.com:912
 
 $(shell bash generate_certs.sh)
 
@@ -20,5 +23,5 @@ clean:
 	docker stack rm actuary
 
 quick-build: 
-	go build -o actuaryBinary github.com/diogomonica/actuary/cmd/actuary
+	go build -o actuaryBinary github.com/introllo/actuary/cmd/actuary
 	./actuaryBinary server
